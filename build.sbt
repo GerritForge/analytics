@@ -15,7 +15,7 @@ lazy val root = (project in file("."))
     name := pluginName,
     version := gerritApiVersion,
 
-    scalaVersion := "2.13.10",
+    scalaVersion := "2.13.14",
     javacOptions ++= Seq("-source", "17", "-target", "17"),
 
     libraryDependencies ++= Seq(
