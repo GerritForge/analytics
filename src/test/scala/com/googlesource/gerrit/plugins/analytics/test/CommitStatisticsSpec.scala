@@ -16,6 +16,7 @@ package com.googlesource.gerrit.plugins.analytics.test
 
 import com.google.gerrit.acceptance.{GitUtil, UseLocalDisk}
 import com.google.gerrit.entities.Project
+import com.google.gerrit.testing.NoGitRepositoryCheckIfClosed
 import com.googlesource.gerrit.plugins.analytics.CommitInfo
 import com.googlesource.gerrit.plugins.analytics.common.{CommitsStatistics, Statistics}
 import org.scalatest.Inside
@@ -23,6 +24,7 @@ import org.scalatest.flatspec.AnyFlatSpecLike
 import org.scalatest.matchers.should.Matchers
 
 @UseLocalDisk
+@NoGitRepositoryCheckIfClosed
 class CommitStatisticsSpec extends AnyFlatSpecLike with GerritTestDaemon with TestCommitStatisticsNoCache with Matchers with Inside {
   class TestEnvironment {
     val repo = fileRepository

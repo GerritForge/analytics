@@ -15,6 +15,7 @@
 package com.googlesource.gerrit.plugins.analytics.common
 
 import com.google.gerrit.acceptance.UseLocalDisk
+import com.google.gerrit.testing.NoGitRepositoryCheckIfClosed
 import com.googlesource.gerrit.plugins.analytics.AnalyticsConfig
 import com.googlesource.gerrit.plugins.analytics.test.GerritTestDaemon
 import org.eclipse.jgit.treewalk.TreeWalk
@@ -22,6 +23,7 @@ import org.scalatest.flatspec.AnyFlatSpecLike
 import org.scalatest.matchers.should.Matchers
 
 @UseLocalDisk
+@NoGitRepositoryCheckIfClosed
 class IgnoreFileSuffixFilterSpec extends AnyFlatSpecLike with Matchers with GerritTestDaemon {
 
   behavior of "IgnoreFileSuffixFilter"

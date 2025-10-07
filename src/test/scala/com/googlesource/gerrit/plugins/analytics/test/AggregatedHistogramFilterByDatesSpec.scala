@@ -15,8 +15,8 @@
 package com.googlesource.gerrit.plugins.analytics.test
 
 import java.util.Date
-
 import com.google.gerrit.acceptance.UseLocalDisk
+import com.google.gerrit.testing.NoGitRepositoryCheckIfClosed
 import com.googlesource.gerrit.plugins.analytics.common.AggregationStrategy.EMAIL
 import com.googlesource.gerrit.plugins.analytics.common.{AggregatedHistogramFilterByDates, BranchesExtractor}
 import org.eclipse.jgit.lib.PersonIdent
@@ -26,6 +26,7 @@ import org.scalatest.flatspec.AnyFlatSpecLike
 import org.scalatest.matchers.should.Matchers
 
 @UseLocalDisk
+@NoGitRepositoryCheckIfClosed
 class AggregatedHistogramFilterByDatesSpec extends AnyFlatSpecLike with GerritTestDaemon with BeforeAndAfterEach with Matchers {
 
   "Author history filter" should
