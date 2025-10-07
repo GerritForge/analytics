@@ -16,11 +16,11 @@ package com.googlesource.gerrit.plugins.analytics.test
 
 import java.io.File
 import java.util.{Date, UUID}
-
 import com.google.gerrit.acceptance.{AbstractDaemonTest, GitUtil, _}
 import com.google.gerrit.entities.Project
 import com.google.gerrit.extensions.client.SubmitType
 import com.google.gerrit.extensions.restapi.RestApiModule
+import com.google.gerrit.server.git.DelegateRepository
 import com.google.gerrit.server.project.ProjectResource.PROJECT_KIND
 import com.google.gerrit.server.project.ProjectState
 import com.google.inject.AbstractModule
@@ -152,8 +152,9 @@ object GerritTestDaemon extends LightweightPluginDaemonTest {
 
   def getRepository(projectName: Project.NameKey): FileRepository =
     repoManager.openRepository(projectName) match {
+      case delegate: DelegateRepository => delegate.delegate().asInstanceOf[FileRepository]
       case repository: FileRepository => repository
-      case repository => throw new IllegalStateException(s"Expected 'FileRepository', got ${repository.getClass.getName}")
+      case repository => throw new IllegalStateException(s"Expected 'FileRepository | DelegateRepository', got ${repository.getClass.getName}")
     }
 
   def adminAuthor = admin.newIdent

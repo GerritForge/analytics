@@ -2,6 +2,7 @@ package com.googlesource.gerrit.plugins.analytics.test
 
 import com.google.gerrit.acceptance.{GitUtil, UseLocalDisk}
 import com.google.gerrit.entities.Project
+import com.google.gerrit.testing.NoGitRepositoryCheckIfClosed
 import com.googlesource.gerrit.plugins.analytics.UserActivitySummary
 import com.googlesource.gerrit.plugins.analytics.common.AggregationStrategy.EMAIL
 import com.googlesource.gerrit.plugins.analytics.common.{Statistics, TestUtils}
@@ -10,6 +11,7 @@ import org.scalatest.flatspec.AnyFlatSpecLike
 import org.scalatest.matchers.should.Matchers
 
 @UseLocalDisk
+@NoGitRepositoryCheckIfClosed
 class UserActivitySummarySpec extends AnyFlatSpecLike with GerritTestDaemon with TestCommitStatisticsNoCache with TestUtils with Matchers {
 
   "numCommits" should "count only comments filtered by their merge status" in {

@@ -1,6 +1,6 @@
 enablePlugins(GitVersioning)
 
-val gerritApiVersion = "3.10.0"
+val gerritApiVersion = "3.13.0-rc1"
 
 val pluginName = "analytics"
 
@@ -16,7 +16,7 @@ lazy val root = (project in file("."))
     version := gerritApiVersion,
 
     scalaVersion := "2.13.14",
-    javacOptions ++= Seq("-source", "17", "-target", "17"),
+    javacOptions ++= Seq("-source", "21", "-target", "21"),
 
     libraryDependencies ++= Seq(
       "io.fabric8" % "gitective-core" % "0.9.54"

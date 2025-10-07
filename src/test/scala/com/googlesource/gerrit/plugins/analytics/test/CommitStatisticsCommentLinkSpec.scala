@@ -16,6 +16,7 @@ package com.googlesource.gerrit.plugins.analytics.test
 
 import com.google.gerrit.acceptance.UseLocalDisk
 import com.google.gerrit.server.git.GitRepositoryManager
+import com.google.gerrit.testing.NoGitRepositoryCheckIfClosed
 import com.googlesource.gerrit.plugins.analytics.IssueInfo
 import com.googlesource.gerrit.plugins.analytics.common.{CommitsStatistics, Statistics}
 import org.eclipse.jgit.lib.Repository
@@ -26,6 +27,7 @@ import org.scalatest.matchers.should.Matchers
 import scala.jdk.CollectionConverters._
 
 @UseLocalDisk
+@NoGitRepositoryCheckIfClosed
 class CommitStatisticsCommentLinkSpec extends AnyFlatSpecLike with GerritTestDaemon with TestCommitStatisticsNoCache with Matchers with Inside {
 
   class TestEnvironment(val repo: Repository = fileRepository) {
