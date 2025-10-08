@@ -15,8 +15,8 @@
 package com.googlesource.gerrit.plugins.analytics.test
 
 import java.lang.reflect.Type
-
 import com.google.gerrit.acceptance.UseLocalDisk
+import com.google.gerrit.testing.NoGitRepositoryCheckIfClosed
 import com.google.gson._
 import com.googlesource.gerrit.plugins.analytics.UserActivitySummary
 import com.googlesource.gerrit.plugins.analytics.common.AggregationStrategy.EMAIL_HOUR
@@ -29,6 +29,7 @@ import org.scalatest.matchers.should.Matchers
 import scala.jdk.CollectionConverters._
 
 @UseLocalDisk
+@NoGitRepositoryCheckIfClosed
 class ContributorsServiceSpec extends AnyFlatSpecLike with Matchers with GerritTestDaemon with Inside {
 
   "ContributorsService" should "get commit statistics" in {

@@ -15,12 +15,14 @@
 package com.googlesource.gerrit.plugins.analytics.common
 
 import com.google.gerrit.acceptance.UseLocalDisk
+import com.google.gerrit.testing.NoGitRepositoryCheckIfClosed
 import com.googlesource.gerrit.plugins.analytics.common.AggregationStrategy.EMAIL_YEAR
 import com.googlesource.gerrit.plugins.analytics.test.GerritTestDaemon
 import org.scalatest.flatspec.AnyFlatSpecLike
 import org.scalatest.matchers.should.Matchers
 
 @UseLocalDisk
+@NoGitRepositoryCheckIfClosed
 class UserActivityHistogramSpec extends AnyFlatSpecLike with Matchers with GerritTestDaemon {
 
   "UserActivityHistogram" should "return no activities" in {

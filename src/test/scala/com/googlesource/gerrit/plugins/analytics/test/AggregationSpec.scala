@@ -16,6 +16,7 @@ package com.googlesource.gerrit.plugins.analytics.test
 
 import java.util.Date
 import com.google.gerrit.acceptance.UseLocalDisk
+import com.google.gerrit.testing.NoGitRepositoryCheckIfClosed
 import com.googlesource.gerrit.plugins.analytics.common.AggregationStrategy._
 import com.googlesource.gerrit.plugins.analytics.common.DateConversions.StringOps
 import com.googlesource.gerrit.plugins.analytics.common.TestUtils
@@ -25,6 +26,7 @@ import org.scalatest.flatspec.AnyFlatSpecLike
 import org.scalatest.matchers.should.Matchers
 
 @UseLocalDisk
+@NoGitRepositoryCheckIfClosed
 class AggregationSpec extends AnyFlatSpecLike with Matchers with GerritTestDaemon with TestUtils with Inspectors {
 
   def commitAtDate(committer: String, when: String, content: String): RevCommit = {
