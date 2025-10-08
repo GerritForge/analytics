@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "71ce0963_ecb6df21",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1015244
+      },
+      "writtenOn": "2025-10-08T10:41:16Z",
+      "side": 1,
+      "message": "```suggestion\nThe new version of Gerrit includes an automatic checker\n```",
+      "range": {
+        "startLine": 12,
+        "startChar": 48,
+        "endLine": 12,
+        "endChar": 56
+      },
+      "revId": "f8adfe3e66f62f2a0e00610ae621f4e510b40f1b",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2cf551aa_13140955",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1015244
+      },
+      "writtenOn": "2025-10-08T10:41:16Z",
+      "side": 1,
+      "message": "```suggestion\nthe test repositories and also asserted the type of the\n```",
+      "range": {
+        "startLine": 15,
+        "startChar": 8,
+        "endLine": 15,
+        "endChar": 10
+      },
+      "revId": "f8adfe3e66f62f2a0e00610ae621f4e510b40f1b",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    }
+  ]
+}
