@@ -14,7 +14,7 @@ Clone the analytics plugin and execute ```sbt assembly```.
 Example:
 
 ```
-   $ git clone https://gerrit.googlesource.com/plugins/analytics
+   $ git clone https://github.com/GerritForge/analytics
    $ cd analytics && sbt assembly
 ```
 
