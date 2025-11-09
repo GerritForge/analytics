@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b6c392f0_36b8da36",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-11-09T12:21:44Z",
+      "side": 1,
+      "message": "Looks like the analytics plugin is broken on stable-3.13, need to fix that breakage before merging this.",
+      "revId": "35575c4cad28c41eaac3dac81c27e607013f7a76",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    }
+  ]
+}
