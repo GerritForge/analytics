@@ -22,6 +22,30 @@
       },
       "revId": "163e5dc9306dbf875de609d3844568e8f0d9dbde",
       "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6f1cd1ff_d694be91",
+        "filename": "src/main/scala/com/gerritforge/gerrit/plugins/analytics/common/AggregationStrategy.scala",
+        "patchSetId": 2
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-11-09T16:05:20Z",
+      "side": 0,
+      "message": "Done",
+      "parentUuid": "f6426e29_f9ab90e1",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 21,
+        "endChar": 108
+      },
+      "revId": "163e5dc9306dbf875de609d3844568e8f0d9dbde",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
     }
   ]
 }

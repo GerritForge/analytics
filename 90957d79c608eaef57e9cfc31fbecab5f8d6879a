@@ -22,6 +22,30 @@
       },
       "revId": "90957d79c608eaef57e9cfc31fbecab5f8d6879a",
       "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c9c0cbfc_abc91c35",
+        "filename": "src/main/scala/com/gerritforge/gerrit/plugins/analytics/common/AggregatedCommitHistogram.scala",
+        "patchSetId": 3
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-11-09T16:05:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4a5ede2d_e86aebd0",
+      "range": {
+        "startLine": 18,
+        "startChar": 0,
+        "endLine": 20,
+        "endChar": 0
+      },
+      "revId": "90957d79c608eaef57e9cfc31fbecab5f8d6879a",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
     }
   ]
 }
