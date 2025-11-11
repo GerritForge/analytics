@@ -46,6 +46,69 @@
       },
       "revId": "163e5dc9306dbf875de609d3844568e8f0d9dbde",
       "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ee2aa197_557604b2",
+        "filename": "src/main/scala/com/gerritforge/gerrit/plugins/analytics/common/CommitsStatisticsCacheModule.scala",
+        "patchSetId": 7
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-11-11T21:30:58Z",
+      "side": 0,
+      "message": "This is unrelated",
+      "range": {
+        "startLine": 18,
+        "startChar": 0,
+        "endLine": 19,
+        "endChar": 36
+      },
+      "revId": "163e5dc9306dbf875de609d3844568e8f0d9dbde",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eec17e1b_41507cde",
+        "filename": "src/main/scala/com/gerritforge/gerrit/plugins/analytics/common/GsonFormatter.scala",
+        "patchSetId": 7
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-11-11T21:30:58Z",
+      "side": 0,
+      "message": "This is unrelated",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 23,
+        "endChar": 0
+      },
+      "revId": "163e5dc9306dbf875de609d3844568e8f0d9dbde",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f53b0732_2d8da060",
+        "filename": "src/main/scala/com/gerritforge/gerrit/plugins/analytics/common/JsonStreamedResultBuilder.scala",
+        "patchSetId": 7
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-11-11T21:30:58Z",
+      "side": 0,
+      "message": "Unrelated",
+      "revId": "163e5dc9306dbf875de609d3844568e8f0d9dbde",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
     }
   ]
 }
