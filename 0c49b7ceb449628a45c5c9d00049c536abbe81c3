@@ -1,0 +1,182 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "53fccb18_caed1bcd",
+        "filename": "src/main/scala/com/gerritforge/gerrit/plugins/analytics/Contributors.scala",
+        "patchSetId": 10
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-11-15T21:47:10Z",
+      "side": 1,
+      "message": "Unneeded change",
+      "range": {
+        "startLine": 135,
+        "startChar": 9,
+        "endLine": 135,
+        "endChar": 70
+      },
+      "revId": "0c49b7ceb449628a45c5c9d00049c536abbe81c3",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cf034333_418ddd5f",
+        "filename": "src/main/scala/com/gerritforge/gerrit/plugins/analytics/common/CommitsStatisticsLoader.scala",
+        "patchSetId": 10
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-11-15T21:47:10Z",
+      "side": 1,
+      "message": "This is wrong: this line should stay as it was before.",
+      "range": {
+        "startLine": 41,
+        "startChar": 15,
+        "endLine": 41,
+        "endChar": 27
+      },
+      "revId": "0c49b7ceb449628a45c5c9d00049c536abbe81c3",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b89687ce_ba58c422",
+        "filename": "src/main/scala/com/gerritforge/gerrit/plugins/analytics/common/RevisionBrowsingSupport.scala",
+        "patchSetId": 10
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-11-15T21:47:10Z",
+      "side": 1,
+      "message": "This should be `gerritforge`.",
+      "range": {
+        "startLine": 12,
+        "startChar": 12,
+        "endLine": 12,
+        "endChar": 24
+      },
+      "revId": "0c49b7ceb449628a45c5c9d00049c536abbe81c3",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7086ee4b_3c0b263b",
+        "filename": "src/test/scala/com/gerritforge/gerrit/plugins/analytics/common/UserActivityHistogramSpec.scala",
+        "patchSetId": 10
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-11-15T21:47:10Z",
+      "side": 1,
+      "message": "Unrelated and unneeded",
+      "range": {
+        "startLine": 14,
+        "startChar": 0,
+        "endLine": 14,
+        "endChar": 112
+      },
+      "revId": "0c49b7ceb449628a45c5c9d00049c536abbe81c3",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9818f453_e129eabf",
+        "filename": "src/test/scala/com/gerritforge/gerrit/plugins/analytics/test/ContributorsServiceSpec.scala",
+        "patchSetId": 10
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-11-15T21:47:10Z",
+      "side": 1,
+      "message": "Keep the same lines position",
+      "range": {
+        "startLine": 13,
+        "startChar": 0,
+        "endLine": 14,
+        "endChar": 68
+      },
+      "revId": "0c49b7ceb449628a45c5c9d00049c536abbe81c3",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "646e511d_aefe8316",
+        "filename": "src/test/scala/com/gerritforge/gerrit/plugins/analytics/test/GerritTestDaemon.scala",
+        "patchSetId": 10
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-11-15T21:47:10Z",
+      "side": 1,
+      "message": "Keep the same lines numbers",
+      "range": {
+        "startLine": 13,
+        "startChar": 0,
+        "endLine": 14,
+        "endChar": 77
+      },
+      "revId": "0c49b7ceb449628a45c5c9d00049c536abbe81c3",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bffd3a9f_aca37786",
+        "filename": "src/test/scala/com/gerritforge/gerrit/plugins/analytics/test/GerritTestDaemon.scala",
+        "patchSetId": 10
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-11-15T21:47:10Z",
+      "side": 1,
+      "message": "Unrelated change",
+      "revId": "0c49b7ceb449628a45c5c9d00049c536abbe81c3",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "48972688_b5d78afb",
+        "filename": "src/test/scala/com/gerritforge/gerrit/plugins/analytics/test/TestCommitStatisticsNoCache.scala",
+        "patchSetId": 10
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-11-15T21:47:10Z",
+      "side": 1,
+      "message": "Unrelated change",
+      "range": {
+        "startLine": 14,
+        "startChar": 0,
+        "endLine": 14,
+        "endChar": 150
+      },
+      "revId": "0c49b7ceb449628a45c5c9d00049c536abbe81c3",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    }
+  ]
+}
