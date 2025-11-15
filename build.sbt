@@ -1,6 +1,6 @@
 enablePlugins(GitVersioning)
 
-val gerritApiVersion = "3.13.0-rc1"
+val gerritApiVersion = "3.13.1"
 
 val pluginName = "analytics"
 
@@ -38,10 +38,10 @@ lazy val root = (project in file("."))
     Compile / packageBin / packageOptions += Package.ManifestAttributes(
       ("Gerrit-ApiType", "plugin"),
       ("Gerrit-PluginName", pluginName),
-      ("Gerrit-Module", "com.googlesource.gerrit.plugins.analytics.Module"),
-      ("Gerrit-SshModule", "com.googlesource.gerrit.plugins.analytics.SshModule"),
+      ("Gerrit-Module", "com.gerritforge.gerrit.plugins.analytics.Module"),
+      ("Gerrit-SshModule", "com.gerritforge.gerrit.plugins.analytics.SshModule"),
       ("Implementation-Title", "Analytics plugin"),
-      ("Implementation-URL", "https://gerrit.googlesource.com/plugins/analytics")
+      ("Implementation-URL", "https://github.com/GerritForge/analytics")
     )
   )
 

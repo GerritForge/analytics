@@ -1,0 +1,43 @@
+// Copyright (C) 2025 GerritForge, Inc.
+//
+// Licensed under the BSL 1.1 (the "License");
+// you may not use this file except in compliance with the License.
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+package com.gerritforge.gerrit.plugins.analytics
+
+import com.google.gerrit.extensions.annotations.PluginName
+import com.google.gerrit.server.config.PluginConfigFactory
+import com.google.inject.{ImplementedBy, Inject}
+import org.eclipse.jgit.lib.Config
+
+@ImplementedBy(classOf[AnalyticsConfigImpl])
+trait AnalyticsConfig {
+  def botlikeFilenameRegexps: List[String]
+  def isExtractIssues: Boolean
+  def ignoreFileSuffixes: List[String]
+}
+
+class AnalyticsConfigImpl @Inject() (
+    val pluginConfigFactory: PluginConfigFactory,
+    @PluginName val pluginName: String
+) extends AnalyticsConfig {
+  lazy val botlikeFilenameRegexps: List[String] = pluginConfigBotLikeFilenameRegexp
+  lazy val isExtractIssues: Boolean             =
+    pluginConfig.getBoolean(Contributors, null, ExtractIssues, false)
+  lazy val ignoreFileSuffixes: List[String] =
+    pluginConfig.getStringList(Contributors, null, IgnoreFileSuffix).toList
+
+  private lazy val pluginConfig: Config = pluginConfigFactory.getGlobalPluginConfig(pluginName)
+  private val Contributors              = "contributors"
+  private val BotlikeFilenameRegexp     = "botlike-filename-regexp"
+  private val ExtractIssues             = "extract-issues"
+  private val IgnoreFileSuffix          = "ignore-file-suffix"
+  private lazy val pluginConfigBotLikeFilenameRegexp =
+    pluginConfig.getStringList(Contributors, null, BotlikeFilenameRegexp).toList
+}
