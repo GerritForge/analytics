@@ -24,6 +24,30 @@
       "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0e46af48_23e47edd",
+        "filename": "src/main/scala/com/gerritforge/gerrit/plugins/analytics/Contributors.scala",
+        "patchSetId": 10
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-11-15T21:49:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "53fccb18_caed1bcd",
+      "range": {
+        "startLine": 135,
+        "startChar": 9,
+        "endLine": 135,
+        "endChar": 70
+      },
+      "revId": "0c49b7ceb449628a45c5c9d00049c536abbe81c3",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cf034333_418ddd5f",
@@ -37,6 +61,30 @@
       "writtenOn": "2025-11-15T21:47:10Z",
       "side": 1,
       "message": "This is wrong: this line should stay as it was before.",
+      "range": {
+        "startLine": 41,
+        "startChar": 15,
+        "endLine": 41,
+        "endChar": 27
+      },
+      "revId": "0c49b7ceb449628a45c5c9d00049c536abbe81c3",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "aa352f7a_7f00052f",
+        "filename": "src/main/scala/com/gerritforge/gerrit/plugins/analytics/common/CommitsStatisticsLoader.scala",
+        "patchSetId": 10
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-11-15T21:49:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cf034333_418ddd5f",
       "range": {
         "startLine": 41,
         "startChar": 15,
@@ -70,6 +118,30 @@
       "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2b7f7bf2_246596e1",
+        "filename": "src/main/scala/com/gerritforge/gerrit/plugins/analytics/common/RevisionBrowsingSupport.scala",
+        "patchSetId": 10
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-11-15T21:49:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b89687ce_ba58c422",
+      "range": {
+        "startLine": 12,
+        "startChar": 12,
+        "endLine": 12,
+        "endChar": 24
+      },
+      "revId": "0c49b7ceb449628a45c5c9d00049c536abbe81c3",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7086ee4b_3c0b263b",
@@ -83,6 +155,30 @@
       "writtenOn": "2025-11-15T21:47:10Z",
       "side": 1,
       "message": "Unrelated and unneeded",
+      "range": {
+        "startLine": 14,
+        "startChar": 0,
+        "endLine": 14,
+        "endChar": 112
+      },
+      "revId": "0c49b7ceb449628a45c5c9d00049c536abbe81c3",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b084aa5a_b1cdd396",
+        "filename": "src/test/scala/com/gerritforge/gerrit/plugins/analytics/common/UserActivityHistogramSpec.scala",
+        "patchSetId": 10
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-11-15T21:49:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7086ee4b_3c0b263b",
       "range": {
         "startLine": 14,
         "startChar": 0,
@@ -116,6 +212,30 @@
       "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8c0e6669_231de291",
+        "filename": "src/test/scala/com/gerritforge/gerrit/plugins/analytics/test/ContributorsServiceSpec.scala",
+        "patchSetId": 10
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-11-15T21:49:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9818f453_e129eabf",
+      "range": {
+        "startLine": 13,
+        "startChar": 0,
+        "endLine": 14,
+        "endChar": 68
+      },
+      "revId": "0c49b7ceb449628a45c5c9d00049c536abbe81c3",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "646e511d_aefe8316",
@@ -129,6 +249,30 @@
       "writtenOn": "2025-11-15T21:47:10Z",
       "side": 1,
       "message": "Keep the same lines numbers",
+      "range": {
+        "startLine": 13,
+        "startChar": 0,
+        "endLine": 14,
+        "endChar": 77
+      },
+      "revId": "0c49b7ceb449628a45c5c9d00049c536abbe81c3",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0bce1192_af8bbc3a",
+        "filename": "src/test/scala/com/gerritforge/gerrit/plugins/analytics/test/GerritTestDaemon.scala",
+        "patchSetId": 10
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-11-15T21:49:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "646e511d_aefe8316",
       "range": {
         "startLine": 13,
         "startChar": 0,
@@ -169,6 +313,30 @@
       "writtenOn": "2025-11-15T21:47:10Z",
       "side": 1,
       "message": "Unrelated change",
+      "range": {
+        "startLine": 14,
+        "startChar": 0,
+        "endLine": 14,
+        "endChar": 150
+      },
+      "revId": "0c49b7ceb449628a45c5c9d00049c536abbe81c3",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "54994714_e55fbf36",
+        "filename": "src/test/scala/com/gerritforge/gerrit/plugins/analytics/test/TestCommitStatisticsNoCache.scala",
+        "patchSetId": 10
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-11-15T21:49:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "48972688_b5d78afb",
       "range": {
         "startLine": 14,
         "startChar": 0,
