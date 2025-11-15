@@ -22,11 +22,12 @@ case class IgnoreFileSuffixFilter @Inject() (config: AnalyticsConfig) extends Tr
 
   private lazy val suffixFilter =
     if (config.ignoreFileSuffixes.nonEmpty)
-      PathFilterUtils.orSuffix(config.ignoreFileSuffixes:_*).negate()
+      PathFilterUtils.orSuffix(config.ignoreFileSuffixes: _*).negate()
     else
       TreeFilter.ALL
 
-  override def include(treeWalk: TreeWalk): Boolean = treeWalk.isSubtree || suffixFilter.include(treeWalk)
+  override def include(treeWalk: TreeWalk): Boolean =
+    treeWalk.isSubtree || suffixFilter.include(treeWalk)
   override def shouldBeRecursive(): Boolean = suffixFilter.shouldBeRecursive()
-  override def clone(): TreeFilter = this
+  override def clone(): TreeFilter          = this
 }

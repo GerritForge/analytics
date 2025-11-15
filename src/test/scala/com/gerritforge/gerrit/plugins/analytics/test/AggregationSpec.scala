@@ -24,11 +24,21 @@ import org.scalatest.matchers.should.Matchers
 
 @UseLocalDisk
 @NoGitRepositoryCheckIfClosed
-class AggregationSpec extends AnyFlatSpecLike with Matchers with GerritTestDaemon with TestUtils with Inspectors {
+class AggregationSpec
+    extends AnyFlatSpecLike
+    with Matchers
+    with GerritTestDaemon
+    with TestUtils
+    with Inspectors {
 
   def commitAtDate(committer: String, when: String, content: String): RevCommit = {
     val personIdent = newPersonIdent(committer, committer, new Date(when.isoStringToLongDate))
-    testFileRepository.commitFile("somefile", content, committer = personIdent, author = personIdent)
+    testFileRepository.commitFile(
+      "somefile",
+      content,
+      committer = personIdent,
+      author = personIdent
+    )
   }
 
   "AggregatedHistogramFilter by email and year" should "aggregate two commits from the same author the same year" in {
@@ -49,8 +59,8 @@ class AggregationSpec extends AnyFlatSpecLike with Matchers with GerritTestDaemo
     val userActivity = aggregateBy(EMAIL_YEAR)
 
     userActivity should have size 2
-    forAll(userActivity) {
-      activity => {
+    forAll(userActivity) { activity =>
+      {
         activity.email should be("john")
         activity.getCount should be(1)
         1
@@ -65,7 +75,7 @@ class AggregationSpec extends AnyFlatSpecLike with Matchers with GerritTestDaemo
     val userActivity = aggregateBy(EMAIL_YEAR)
 
     userActivity should have size 2
-    userActivity.map(_.email) should contain allOf("john", "bob")
+    userActivity.map(_.email) should contain allOf ("john", "bob")
     forAll(userActivity) {
       _.getCount should be(1)
     }
@@ -89,8 +99,8 @@ class AggregationSpec extends AnyFlatSpecLike with Matchers with GerritTestDaemo
     val userActivity = aggregateBy(EMAIL_MONTH)
 
     userActivity should have size 2
-    forAll(userActivity) {
-      activity => {
+    forAll(userActivity) { activity =>
+      {
         activity.email should be("john")
         activity.getCount should be(1)
         1
@@ -105,7 +115,7 @@ class AggregationSpec extends AnyFlatSpecLike with Matchers with GerritTestDaemo
     val userActivity = aggregateBy(EMAIL_MONTH)
 
     userActivity should have size 2
-    userActivity.map(_.email) should contain allOf("john", "bob")
+    userActivity.map(_.email) should contain allOf ("john", "bob")
     forAll(userActivity) {
       _.getCount should be(1)
     }
@@ -129,8 +139,8 @@ class AggregationSpec extends AnyFlatSpecLike with Matchers with GerritTestDaemo
     val userActivity = aggregateBy(EMAIL_DAY)
 
     userActivity should have size 2
-    forAll(userActivity) {
-      activity => {
+    forAll(userActivity) { activity =>
+      {
         activity.email should be("john")
         activity.getCount should be
         1
@@ -145,7 +155,7 @@ class AggregationSpec extends AnyFlatSpecLike with Matchers with GerritTestDaemo
     val userActivity = aggregateBy(EMAIL_DAY)
 
     userActivity should have size 2
-    userActivity.map(_.email) should contain allOf("john", "bob")
+    userActivity.map(_.email) should contain allOf ("john", "bob")
     forAll(userActivity) {
       _.getCount should be(1)
     }
@@ -169,8 +179,8 @@ class AggregationSpec extends AnyFlatSpecLike with Matchers with GerritTestDaemo
     val userActivity = aggregateBy(EMAIL_HOUR)
 
     userActivity should have size 2
-    forAll(userActivity) {
-      activity => {
+    forAll(userActivity) { activity =>
+      {
         activity.email should be("john")
         activity.getCount should be(1)
       }
@@ -187,6 +197,6 @@ class AggregationSpec extends AnyFlatSpecLike with Matchers with GerritTestDaemo
     forAll(userActivity) {
       _.getCount should be(1)
     }
-    userActivity.map(_.email) should contain allOf("john", "bob")
+    userActivity.map(_.email) should contain allOf ("john", "bob")
   }
 }

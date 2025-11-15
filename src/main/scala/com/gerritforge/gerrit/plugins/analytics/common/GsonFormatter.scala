@@ -28,23 +28,31 @@ class GsonFormatter {
   def format[T](values: IterableOnce[T], out: PrintWriter) = {
     val gson: Gson = gsonBuilder.create
 
-    values.iterator.foreach {value =>
+    values.iterator.foreach { value =>
       gson.toJson(value, out)
       out.println()
     }
   }
 
   class IterableSerializer extends JsonSerializer[Iterable[Any]] {
-    override def serialize(src: Iterable[Any], typeOfSrc: Type, context: JsonSerializationContext): JsonElement = {
+    override def serialize(
+        src: Iterable[Any],
+        typeOfSrc: Type,
+        context: JsonSerializationContext
+    ): JsonElement = {
       import scala.jdk.CollectionConverters._
       context.serialize(src.asJava)
     }
   }
 
   class OptionSerializer extends JsonSerializer[Option[Any]] {
-    def serialize(src: Option[Any], typeOfSrc: Type, context: JsonSerializationContext): JsonElement = {
+    def serialize(
+        src: Option[Any],
+        typeOfSrc: Type,
+        context: JsonSerializationContext
+    ): JsonElement = {
       src match {
-        case None => JsonNull.INSTANCE
+        case None    => JsonNull.INSTANCE
         case Some(v) => context.serialize(v)
       }
     }

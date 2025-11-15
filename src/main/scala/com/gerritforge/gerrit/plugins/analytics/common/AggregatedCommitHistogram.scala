@@ -13,16 +13,19 @@ package com.gerritforge.gerrit.plugins.analytics.common
 
 import java.util.Date
 
-import com.gerritforge.gerrit.plugins.analytics.common.AggregationStrategy.{AggregationKey, BY_BRANCH}
+import com.gerritforge.gerrit.plugins.analytics.common.AggregationStrategy.{
+  AggregationKey,
+  BY_BRANCH
+}
 import org.eclipse.jgit.lib.PersonIdent
 import org.eclipse.jgit.revwalk.RevCommit
 import org.gitective.core.stat.{CommitHistogram, CommitHistogramFilter, UserCommitActivity}
 
 class AggregatedUserCommitActivity(val key: AggregationKey, val name: String, val email: String)
-  extends UserCommitActivity(name, email)
+    extends UserCommitActivity(name, email)
 
 class AggregatedCommitHistogram(var aggregationStrategy: AggregationStrategy)
-  extends CommitHistogram {
+    extends CommitHistogram {
 
   def includeWithBranches(commit: RevCommit, user: PersonIdent, branches: Set[String]): Unit = {
     branches.foreach { branch =>
@@ -34,13 +37,12 @@ class AggregatedCommitHistogram(var aggregationStrategy: AggregationStrategy)
   }
 
   override def include(commit: RevCommit, user: PersonIdent): AggregatedCommitHistogram = {
-    val key = aggregationStrategy.mapping(user, commit.getAuthorIdent.getWhen)
+    val key       = aggregationStrategy.mapping(user, commit.getAuthorIdent.getWhen)
     val keyString = key.toString
 
     val activity = Option(users.get(keyString)) match {
       case None =>
-        val newActivity = new AggregatedUserCommitActivity(key,
-          user.getName, user.getEmailAddress)
+        val newActivity = new AggregatedUserCommitActivity(key, user.getName, user.getEmailAddress)
         users.put(keyString, newActivity)
         newActivity
       case Some(foundActivity) => foundActivity
@@ -59,7 +61,7 @@ object AggregatedCommitHistogram {
 }
 
 abstract class AbstractCommitHistogramFilter(aggregationStrategy: AggregationStrategy)
-  extends CommitHistogramFilter {
+    extends CommitHistogramFilter {
   val AbstractHistogram = new AggregatedCommitHistogram(aggregationStrategy)
 
   override def getHistogram = AbstractHistogram

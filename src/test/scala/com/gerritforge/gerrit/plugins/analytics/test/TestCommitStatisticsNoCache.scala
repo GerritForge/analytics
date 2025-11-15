@@ -18,10 +18,13 @@ import org.eclipse.jgit.lib.ObjectId
 trait TestCommitStatisticsNoCache {
   self: GerritTestDaemon =>
 
-  lazy val commitsStatisticsNoCache  = CommitsStatisticsNoCache(daemonTest.getInstance(classOf[CommitsStatisticsLoader]))
+  lazy val commitsStatisticsNoCache = CommitsStatisticsNoCache(
+    daemonTest.getInstance(classOf[CommitsStatisticsLoader])
+  )
 }
 
-case class CommitsStatisticsNoCache @Inject() (commitsStatisticsLoader: CommitsStatisticsLoader) extends CommitsStatisticsCache {
+case class CommitsStatisticsNoCache @Inject() (commitsStatisticsLoader: CommitsStatisticsLoader)
+    extends CommitsStatisticsCache {
   override def get(project: String, objectId: ObjectId): CommitsStatistics =
     commitsStatisticsLoader.load(CommitsStatisticsCacheKey(project, objectId))
 }

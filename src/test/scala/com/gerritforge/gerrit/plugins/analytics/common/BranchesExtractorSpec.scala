@@ -27,7 +27,8 @@ class BranchesExtractorSpec extends AnyFlatSpecLike with Matchers with GerritTes
   it should "extract one branch for a commit existing only in one branch" in {
     testFileRepository.commitFile("file", "content")
     testFileRepository.branch("feature/branch", "master")
-    val commit = testFileRepository.commitFile("fileOnBranch", "content2", branch = "feature/branch")
+    val commit =
+      testFileRepository.commitFile("fileOnBranch", "content2", branch = "feature/branch")
 
     commitsBranches.branchesOfCommit(commit) shouldBe Set("feature/branch")
   }

@@ -27,9 +27,9 @@ class IgnoreFileSuffixFilterSpec extends AnyFlatSpecLike with Matchers with Gerr
 
   it should "include a file with suffix not listed in configuration" in {
     val ignoreSuffix = ".dmg"
-    val fileSuffix = ".txt"
-    val aFile = s"aFile$fileSuffix"
-    val commit = testFileRepository.commitFile(aFile, "some content")
+    val fileSuffix   = ".txt"
+    val aFile        = s"aFile$fileSuffix"
+    val commit       = testFileRepository.commitFile(aFile, "some content")
 
     val walk = TreeWalk.forPath(testFileRepository.getRepository, aFile, commit.getTree)
 
@@ -38,8 +38,8 @@ class IgnoreFileSuffixFilterSpec extends AnyFlatSpecLike with Matchers with Gerr
 
   it should "not include a file with suffix listed in configuration" in {
     val ignoreSuffix = ".dmg"
-    val aFile = s"aFile$ignoreSuffix"
-    val commit = testFileRepository.commitFile(aFile, "some content")
+    val aFile        = s"aFile$ignoreSuffix"
+    val commit       = testFileRepository.commitFile(aFile, "some content")
 
     val walk = TreeWalk.forPath(testFileRepository.getRepository, aFile, commit.getTree)
 
@@ -47,8 +47,8 @@ class IgnoreFileSuffixFilterSpec extends AnyFlatSpecLike with Matchers with Gerr
   }
 
   private def newIgnoreFileSuffix(suffixes: String*) = IgnoreFileSuffixFilter(new AnalyticsConfig {
-    override lazy val botlikeFilenameRegexps = List.empty
-    override lazy val isExtractIssues: Boolean = false
+    override lazy val botlikeFilenameRegexps      = List.empty
+    override lazy val isExtractIssues: Boolean    = false
     override def ignoreFileSuffixes: List[String] = suffixes.toList
   })
 }
