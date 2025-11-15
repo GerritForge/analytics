@@ -71,6 +71,30 @@
       "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2e76d539_b5bba261",
+        "filename": "src/main/scala/com/gerritforge/gerrit/plugins/analytics/common/CommitsStatisticsCache.scala",
+        "patchSetId": 10
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-11-15T21:49:08Z",
+      "side": 0,
+      "message": "Done",
+      "parentUuid": "b8132411_ec2279c8",
+      "range": {
+        "startLine": 18,
+        "startChar": 25,
+        "endLine": 18,
+        "endChar": 48
+      },
+      "revId": "163e5dc9306dbf875de609d3844568e8f0d9dbde",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ee2aa197_557604b2",

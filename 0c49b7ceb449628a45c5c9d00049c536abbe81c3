@@ -300,6 +300,24 @@
       "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "feda24b1_9b7e4a01",
+        "filename": "src/test/scala/com/gerritforge/gerrit/plugins/analytics/test/GerritTestDaemon.scala",
+        "patchSetId": 10
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-11-15T21:49:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bffd3a9f_aca37786",
+      "revId": "0c49b7ceb449628a45c5c9d00049c536abbe81c3",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "48972688_b5d78afb",
