@@ -14,8 +14,8 @@ package com.gerritforge.gerrit.plugins.analytics.test
 import com.gerritforge.gerrit.plugins.analytics.AnalyticsConfig
 
 object TestAnalyticsConfig extends AnalyticsConfig {
-  val IGNORED_FILE_SUFFIX = ".bin"
+  val IGNORED_FILE_SUFFIX                  = ".bin"
   val botlikeFilenameRegexps: List[String] = List.empty
-  val isExtractIssues: Boolean = true
-  val ignoreFileSuffixes: List[String] = List(IGNORED_FILE_SUFFIX)
+  val isExtractIssues: Boolean             = true
+  val ignoreFileSuffixes: List[String]     = List(IGNORED_FILE_SUFFIX)
 }

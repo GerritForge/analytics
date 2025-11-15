@@ -27,19 +27,27 @@ class BotLikeExtractorImplSpec extends AnyFlatSpecLike with Matchers with Gerrit
   it should "return true when all files match bot-like identifiers" in {
     val extractor = newBotLikeExtractorImpl(List(""".+\.xml"""))
 
-    extractor.isBotLike(Set(
-      "some/path/AFile.xml",
-      "some/path/AnotherFile.xml"
-    )).shouldBe(true)
+    extractor
+      .isBotLike(
+        Set(
+          "some/path/AFile.xml",
+          "some/path/AnotherFile.xml"
+        )
+      )
+      .shouldBe(true)
   }
 
   it should "return false when at least one file does not match bot-like identifiers" in {
     val extractor = newBotLikeExtractorImpl(List(""".+\.xml"""))
 
-    extractor.isBotLike(Set(
-      "some/path/AFile.xml",
-      "some/path/AnotherFile.someExtension"
-    )).shouldBe(false)
+    extractor
+      .isBotLike(
+        Set(
+          "some/path/AFile.xml",
+          "some/path/AnotherFile.someExtension"
+        )
+      )
+      .shouldBe(false)
   }
 
   it should "return false when no bot-like identifiers have been provided" in {
@@ -48,9 +56,11 @@ class BotLikeExtractorImplSpec extends AnyFlatSpecLike with Matchers with Gerrit
     extractor.isBotLike(Set("some/path/anyFile")).shouldBe(false)
   }
 
-  private def newBotLikeExtractorImpl(botLikeRegexps: List[String]) = new BotLikeExtractorImpl(new AnalyticsConfig {
-    override lazy val botlikeFilenameRegexps = botLikeRegexps
-    override lazy val isExtractIssues: Boolean = false
-    override def ignoreFileSuffixes: List[String] = List.empty
-  })
+  private def newBotLikeExtractorImpl(botLikeRegexps: List[String]) = new BotLikeExtractorImpl(
+    new AnalyticsConfig {
+      override lazy val botlikeFilenameRegexps      = botLikeRegexps
+      override lazy val isExtractIssues: Boolean    = false
+      override def ignoreFileSuffixes: List[String] = List.empty
+    }
+  )
 }

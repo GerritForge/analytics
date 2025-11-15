@@ -20,14 +20,14 @@ object CommitsStatisticsCacheSerializer extends CacheSerializer[CommitsStatistic
 
   override def serialize(`object`: CommitsStatistics): Array[Byte] = {
     val stream: ByteArrayOutputStream = new ByteArrayOutputStream()
-    val oos = new ObjectOutputStream(stream)
+    val oos                           = new ObjectOutputStream(stream)
     oos.writeObject(`object`)
     oos.close()
     stream.toByteArray
   }
 
   override def deserialize(in: Array[Byte]): CommitsStatistics = {
-    val ois = new ObjectInputStream(new ByteArrayInputStream(in))
+    val ois   = new ObjectInputStream(new ByteArrayInputStream(in))
     val value = ois.readObject.asInstanceOf[CommitsStatistics]
     ois.close()
     value
@@ -37,13 +37,13 @@ object CommitsStatisticsCacheSerializer extends CacheSerializer[CommitsStatistic
 object CommitsStatisticsCacheKeySerializer extends CacheSerializer[CommitsStatisticsCacheKey] {
 
   override def serialize(obj: CommitsStatisticsCacheKey): Array[Byte] = {
-    val objectIdBin = ObjectIdCacheSerializer.INSTANCE.serialize(obj.commitId)
+    val objectIdBin    = ObjectIdCacheSerializer.INSTANCE.serialize(obj.commitId)
     val projectNameBin = obj.projectName.getBytes
     return objectIdBin ++ projectNameBin
   }
 
   override def deserialize(in: Array[Byte]): CommitsStatisticsCacheKey = {
-    val objectIdBin = in.take(Constants.OBJECT_ID_LENGTH)
+    val objectIdBin    = in.take(Constants.OBJECT_ID_LENGTH)
     val projectNameBin = in.drop(Constants.OBJECT_ID_LENGTH)
 
     return CommitsStatisticsCacheKey(new String(projectNameBin), ObjectId.fromRaw(objectIdBin))

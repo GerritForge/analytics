@@ -26,12 +26,16 @@ import scala.jdk.CollectionConverters._
 
 @UseLocalDisk
 @NoGitRepositoryCheckIfClosed
-class ContributorsServiceSpec extends AnyFlatSpecLike with Matchers with GerritTestDaemon with Inside {
+class ContributorsServiceSpec
+    extends AnyFlatSpecLike
+    with Matchers
+    with GerritTestDaemon
+    with Inside {
 
   "ContributorsService" should "get commit statistics" in {
-    val aContributorName = "Contributor Name"
+    val aContributorName  = "Contributor Name"
     val aContributorEmail = "contributor@test.com"
-    val aFileName = "file.txt"
+    val aFileName         = "file.txt"
     val anIgnoredFileName = s"file$IGNORED_FILE_SUFFIX"
 
     val commit = testFileRepository.commitFiles(
@@ -39,14 +43,35 @@ class ContributorsServiceSpec extends AnyFlatSpecLike with Matchers with GerritT
       newPersonIdent(aContributorName, aContributorEmail)
     )
 
-    val statsJson = daemonTest.restSession.get(s"/projects/${fileRepositoryName.get()}/analytics~contributors?aggregate=${EMAIL_HOUR.name}")
+    val statsJson = daemonTest.restSession.get(
+      s"/projects/${fileRepositoryName.get()}/analytics~contributors?aggregate=${EMAIL_HOUR.name}"
+    )
 
     statsJson.assertOK()
 
     val stats = TestGson().fromJson(statsJson.getEntityContent, classOf[UserActivitySummary])
 
     inside(stats) {
-      case UserActivitySummary(_, _, _, _, theAuthorName, theAuthorEmail, numCommits, numFiles, numDistinctFiles, addedLines, deletedLines, commits, _, _, _, _, _, _) =>
+      case UserActivitySummary(
+            _,
+            _,
+            _,
+            _,
+            theAuthorName,
+            theAuthorEmail,
+            numCommits,
+            numFiles,
+            numDistinctFiles,
+            addedLines,
+            deletedLines,
+            commits,
+            _,
+            _,
+            _,
+            _,
+            _,
+            _
+          ) =>
         theAuthorName shouldBe aContributorName
         theAuthorEmail shouldBe aContributorEmail
         numCommits shouldBe 1
@@ -63,19 +88,26 @@ class ContributorsServiceSpec extends AnyFlatSpecLike with Matchers with GerritT
 object TestGson {
 
   class SetStringDeserializer extends JsonDeserializer[Set[String]] {
-    override def deserialize(json: JsonElement, typeOfT: Type, context: JsonDeserializationContext): Set[String] =
+    override def deserialize(
+        json: JsonElement,
+        typeOfT: Type,
+        context: JsonDeserializationContext
+    ): Set[String] =
       json.getAsJsonArray.asScala.map(_.getAsString).toSet
   }
 
   class OptionDeserializer extends JsonDeserializer[Option[Any]] {
-    override def deserialize(jsonElement: JsonElement, `type`: Type, jsonDeserializationContext: JsonDeserializationContext): Option[Any] = {
+    override def deserialize(
+        jsonElement: JsonElement,
+        `type`: Type,
+        jsonDeserializationContext: JsonDeserializationContext
+    ): Option[Any] = {
       Some(jsonElement)
     }
   }
 
   def apply(): Gson =
-    new GsonFormatter()
-      .gsonBuilder
+    new GsonFormatter().gsonBuilder
       .registerTypeHierarchyAdapter(classOf[Iterable[String]], new SetStringDeserializer)
       .registerTypeHierarchyAdapter(classOf[Option[Any]], new OptionDeserializer())
       .create()

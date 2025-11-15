@@ -29,33 +29,34 @@ import scala.util.Using
 import scala.util.matching.Regex
 
 class CommitsStatisticsLoader @Inject() (
-  gitRepositoryManager: GitRepositoryManager,
-  projectCache: ProjectCache,
-  botLikeExtractor: BotLikeExtractor,
-  config: AnalyticsConfig,
-  ignoreFileSuffixFilter: IgnoreFileSuffixFilter
+    gitRepositoryManager: GitRepositoryManager,
+    projectCache: ProjectCache,
+    botLikeExtractor: BotLikeExtractor,
+    config: AnalyticsConfig,
+    ignoreFileSuffixFilter: IgnoreFileSuffixFilter
 ) extends CacheLoader[CommitsStatisticsCacheKey, CommitsStatistics] {
   import CommitsStatisticsLoader._
 
   override def load(cacheKey: CommitsStatisticsCacheKey): CommitsStatistics = {
     import RevisionBrowsingSupport._
 
-    val objectId = cacheKey.commitId
-    val nameKey = Project.nameKey(cacheKey.projectName)
+    val objectId                              = cacheKey.commitId
+    val nameKey                               = Project.nameKey(cacheKey.projectName)
     val commentInfoList: Seq[CommentLinkInfo] =
-      if(config.isExtractIssues) projectCache.get(nameKey).toScala.toList.flatMap(_.getCommentLinks.asScala) else Seq.empty
-    val replacers = commentInfoList.flatMap(info =>
-      Option(info.link).map(link => Replacer(info.`match`.r, link))
-    )
+      if (config.isExtractIssues)
+        projectCache.get(nameKey).toScala.toList.flatMap(_.getCommentLinks.asScala)
+      else Seq.empty
+    val replacers =
+      commentInfoList.flatMap(info => Option(info.link).map(link => Replacer(info.`match`.r, link)))
 
     Using.Manager { use =>
       val repo = use(gitRepositoryManager.openRepository(nameKey))
 
       // I can imagine this kind of statistics is already being available in Gerrit but couldn't understand how to access it
       // which Injection can be useful for this task?
-      val rw = use(new RevWalk(repo))
-      val reader = repo.newObjectReader()
-      val commit = rw.parseCommit(objectId)
+      val rw            = use(new RevWalk(repo))
+      val reader        = repo.newObjectReader()
+      val commit        = rw.parseCommit(objectId)
       val commitMessage = commit.getFullMessage
 
       val oldTree = {
@@ -78,25 +79,39 @@ class CommitsStatisticsLoader @Inject() (
       val lines = (for {
         diff <- diffs
         edit <- df.toFileHeader(diff).toEditList.asScala
-      } yield Lines(edit.getEndA - edit.getBeginA, edit.getEndB - edit.getBeginB)).fold(Lines(0, 0))(_ + _)
+      } yield Lines(edit.getEndA - edit.getBeginA, edit.getEndB - edit.getBeginB))
+        .fold(Lines(0, 0))(_ + _)
 
       val files: Set[String] = diffs.map(df.toFileHeader(_).getNewPath).toSet
 
-      val commitInfo = CommitInfo(objectId.getName, commit.getAuthorIdent.getWhen.getTime, commit.isMerge, botLikeExtractor.isBotLike(files), files)
-      val commitsStats = CommitsStatistics(lines.added, lines.deleted, commitInfo.merge, commitInfo.botLike, List(commitInfo), extractIssues(commitMessage, replacers).toList)
+      val commitInfo = CommitInfo(
+        objectId.getName,
+        commit.getAuthorIdent.getWhen.getTime,
+        commit.isMerge,
+        botLikeExtractor.isBotLike(files),
+        files
+      )
+      val commitsStats = CommitsStatistics(
+        lines.added,
+        lines.deleted,
+        commitInfo.merge,
+        commitInfo.botLike,
+        List(commitInfo),
+        extractIssues(commitMessage, replacers).toList
+      )
 
       commitsStats
     }
   }.get
 
   private def extractIssues(commitMessage: String, replacers: Seq[Replacer]): Seq[IssueInfo] =
-    replacers.flatMap {
-      case Replacer(pattern, replaced) =>
-        pattern.findAllIn(commitMessage)
-          .map(code => {
-            val transformed = pattern.replaceAllIn(code, replaced)
-            IssueInfo(code, transformed)
-          })
+    replacers.flatMap { case Replacer(pattern, replaced) =>
+      pattern
+        .findAllIn(commitMessage)
+        .map(code => {
+          val transformed = pattern.replaceAllIn(code, replaced)
+          IssueInfo(code, transformed)
+        })
     }
 }
 

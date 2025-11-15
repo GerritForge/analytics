@@ -29,7 +29,8 @@ class UserActivityHistogram {
       // 'find' throws an IllegalArgumentException when the conditions to walk through the commits tree are not met,
       // i.e: an empty repository doesn't have the starting commit.
       case _: IllegalArgumentException => Array.empty[AggregatedUserCommitActivity]
-      case e: Exception => throw new PreconditionFailedException(s"Cannot find commits: ${e.getMessage}").initCause(e)
+      case e: Exception                =>
+        throw new PreconditionFailedException(s"Cannot find commits: ${e.getMessage}").initCause(e)
     }
   }
 }

@@ -22,9 +22,14 @@ import org.scalatest.matchers.should.Matchers
 
 @UseLocalDisk
 @NoGitRepositoryCheckIfClosed
-class CommitStatisticsSpec extends AnyFlatSpecLike with GerritTestDaemon with TestCommitStatisticsNoCache with Matchers with Inside {
+class CommitStatisticsSpec
+    extends AnyFlatSpecLike
+    with GerritTestDaemon
+    with TestCommitStatisticsNoCache
+    with Matchers
+    with Inside {
   class TestEnvironment {
-    val repo = fileRepository
+    val repo  = fileRepository
     val stats = new Statistics(fileRepositoryName, commitsStatisticsNoCache)
   }
 
@@ -47,20 +52,30 @@ class CommitStatisticsSpec extends AnyFlatSpecLike with GerritTestDaemon with Te
     val stat1 = CommitsStatistics(3, 4, false, false, List(commit1, commit2))
     val stat2 = CommitsStatistics(5, 7, false, false, List(commit3, commit4))
 
-    (stat1 + stat2) shouldBe CommitsStatistics(8, 11, false, false, List(commit1, commit2, commit3, commit4))
+    (stat1 + stat2) shouldBe CommitsStatistics(
+      8,
+      11,
+      false,
+      false,
+      List(commit1, commit2, commit3, commit4)
+    )
   }
 
   it should "fail if trying to be added to a CommitStatistics object for a different isMerge value" in {
-    an [IllegalArgumentException] should be thrownBy  (CommitsStatistics.EmptyMerge + CommitsStatistics.EmptyNonMerge)
+    an[
+      IllegalArgumentException
+    ] should be thrownBy (CommitsStatistics.EmptyMerge + CommitsStatistics.EmptyNonMerge)
   }
 
   it should "stats multiple files added" in new TestEnvironment {
     val initial = testFileRepository.commitFile("file1.txt", "line1\nline2\n")
-    val second = testFileRepository.commitFiles(
+    val second  = testFileRepository.commitFiles(
       List(
         "file1.txt" -> "line1\n",
         "file2.txt" -> "line1\nline2\n"
-      ), message = "second commit")
+      ),
+      message = "second commit"
+    )
 
     inside(stats.forCommits(second)) { case List(s: CommitsStatistics) =>
       s.numFiles should be(2)
@@ -70,8 +85,8 @@ class CommitStatisticsSpec extends AnyFlatSpecLike with GerritTestDaemon with Te
   }
 
   it should "stats lines eliminated" in new TestEnvironment {
-    val initial = testFileRepository.commitFile( "file1.txt", "line1\nline2\nline3")
-    val second = testFileRepository.commitFile( "file1.txt", "line1\n")
+    val initial = testFileRepository.commitFile("file1.txt", "line1\nline2\nline3")
+    val second  = testFileRepository.commitFile("file1.txt", "line1\n")
     inside(stats.forCommits(second)) { case List(s: CommitsStatistics) =>
       s.numFiles should be(1)
       s.addedLines should be(0)
@@ -81,16 +96,14 @@ class CommitStatisticsSpec extends AnyFlatSpecLike with GerritTestDaemon with Te
 
   it should "stats a Seq[RevCommit]" in new TestEnvironment {
     val initial = testFileRepository.commitFiles(
-      List(
-        "file1.txt" -> "line1\n",
-        "file3.txt" -> "line1\nline2\n"),
-      message = "first commit")
+      List("file1.txt" -> "line1\n", "file3.txt" -> "line1\nline2\n"),
+      message = "first commit"
+    )
 
     val second = testFileRepository.commitFiles(
-      List(
-        "file1.txt" -> "line1a\n",
-        "file2.txt" -> "line1\nline2\n"),
-      message = "second commit")
+      List("file1.txt" -> "line1a\n", "file2.txt" -> "line1\nline2\n"),
+      message = "second commit"
+    )
 
     inside(stats.forCommits(initial, second)) { case List(nonMergeStats: CommitsStatistics) =>
       nonMergeStats.numFiles should be(4)
@@ -111,17 +124,16 @@ class CommitStatisticsSpec extends AnyFlatSpecLike with GerritTestDaemon with Te
 
   it should "split merge commits and non-merge commits" in {
     val newProjectKey: Project.NameKey = daemonTest.newProject(testSpecificRepositoryName, true)
-    val repository = daemonTest.getRepository(newProjectKey)
-    val clonedRepo = GitUtil.newTestRepository(repository).gitClone
-    val stats = new Statistics(newProjectKey, commitsStatisticsNoCache)
+    val repository                     = daemonTest.getRepository(newProjectKey)
+    val clonedRepo                     = GitUtil.newTestRepository(repository).gitClone
+    val stats                          = new Statistics(newProjectKey, commitsStatisticsNoCache)
 
     val firstNonMerge = clonedRepo.commitFile("file1.txt", "line1\nline2\n")
-    val merge = clonedRepo.mergeCommitFile("file1.txt", "line1\nline2\nline3")
-    val nonMerge = clonedRepo.commitFiles(
-      List(
-        "file1.txt" -> "line1\n",
-        "file2.txt" -> "line1\nline2\n"),
-      message = "second commit")
+    val merge         = clonedRepo.mergeCommitFile("file1.txt", "line1\nline2\nline3")
+    val nonMerge      = clonedRepo.commitFiles(
+      List("file1.txt" -> "line1\n", "file2.txt" -> "line1\nline2\n"),
+      message = "second commit"
+    )
     clonedRepo.push
 
     inside(stats.forCommits(firstNonMerge, merge.getNewHead, nonMerge)) {

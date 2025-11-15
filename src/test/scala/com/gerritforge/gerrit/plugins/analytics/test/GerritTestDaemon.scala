@@ -54,7 +54,11 @@ trait GerritTestDaemon extends BeforeAndAfterEach {
 
   protected lazy val committer = newPersonIdent("Test Committer", "committer@test.com")
 
-  def newPersonIdent(name: String = "Test Person", email: String = "person@test.com", ts: Date = new Date()) =
+  def newPersonIdent(
+      name: String = "Test Person",
+      email: String = "person@test.com",
+      ts: Date = new Date()
+  ) =
     new PersonIdent(new PersonIdent(name, email), ts)
 
   override def beforeEach() = {
@@ -72,48 +76,84 @@ trait GerritTestDaemon extends BeforeAndAfterEach {
       repo.git.branchCreate.setName(name).setStartPoint(startPoint).call
 
     def gitClone: TestFileRepository = {
-      val TmpDir = System.getProperty("java.io.tmpdir")
+      val TmpDir           = System.getProperty("java.io.tmpdir")
       val clonedRepository = Git.cloneRepository
         .setDirectory(new File(s"$TmpDir/${testSpecificRepositoryName}_clone"))
         .setURI(repo.getRepository.getDirectory.toURI.toString)
         .call()
-        .getRepository.asInstanceOf[FileRepository]
+        .getRepository
+        .asInstanceOf[FileRepository]
 
       GitUtil.newTestRepository(clonedRepository)
     }
 
-    def commitFile(path: String, content: String, author: PersonIdent = author, committer: PersonIdent = committer, branch: String = Constants.MASTER, message: String = ""): RevCommit =
-      repo.branch(branch).commit()
+    def commitFile(
+        path: String,
+        content: String,
+        author: PersonIdent = author,
+        committer: PersonIdent = committer,
+        branch: String = Constants.MASTER,
+        message: String = ""
+    ): RevCommit =
+      repo
+        .branch(branch)
+        .commit()
         .add(path, content)
         .author(author)
         .committer(committer)
         .message(message)
         .create
 
-    def commitFiles(files: Iterable[(String, String)], author: PersonIdent = author, committer: PersonIdent = committer, branch: String = Constants.MASTER, message: String = ""): RevCommit = {
-      val commit = repo.branch(branch).commit()
+    def commitFiles(
+        files: Iterable[(String, String)],
+        author: PersonIdent = author,
+        committer: PersonIdent = committer,
+        branch: String = Constants.MASTER,
+        message: String = ""
+    ): RevCommit = {
+      val commit = repo
+        .branch(branch)
+        .commit()
         .author(author)
         .committer(committer)
         .message(message)
 
-      files.foldLeft(commit) {
-        (commit, fileAndContent) => commit.add(fileAndContent._1, fileAndContent._2)
-      }.create()
+      files
+        .foldLeft(commit) { (commit, fileAndContent) =>
+          commit.add(fileAndContent._1, fileAndContent._2)
+        }
+        .create()
     }
 
-    def mergeCommitFile(fileName: String, content: String, author: PersonIdent = author, committer: PersonIdent = committer): MergeResult = {
+    def mergeCommitFile(
+        fileName: String,
+        content: String,
+        author: PersonIdent = author,
+        committer: PersonIdent = committer
+    ): MergeResult = {
       val currentBranch = repo.getRepository.getFullBranch
-      val tmpBranch = repo.branch("tmp", currentBranch)
+      val tmpBranch     = repo.branch("tmp", currentBranch)
       try {
-        repo.commitFile(fileName, content, branch = tmpBranch.getName, author = author, committer = committer)
+        repo.commitFile(
+          fileName,
+          content,
+          branch = tmpBranch.getName,
+          author = author,
+          committer = committer
+        )
         repo.mergeBranch(tmpBranch.getName, withCommit = true)
       } finally {
         repo.git.branchDelete().setBranchNames(tmpBranch.getName).setForce(true).call.get(0)
       }
     }
 
-    def mergeBranch(branch: String, withCommit: Boolean, message: String = "merging branch"): MergeResult = {
-      repo.git.merge.setStrategy(MergeStrategy.RESOLVE)
+    def mergeBranch(
+        branch: String,
+        withCommit: Boolean,
+        message: String = "merging branch"
+    ): MergeResult = {
+      repo.git.merge
+        .setStrategy(MergeStrategy.RESOLVE)
         .include(CommitUtils.getRef(repo.getRepository, branch))
         .setCommit(withCommit)
         .setFastForward(FastForwardMode.NO_FF)
@@ -149,8 +189,11 @@ object GerritTestDaemon extends LightweightPluginDaemonTest {
   def getRepository(projectName: Project.NameKey): FileRepository =
     repoManager.openRepository(projectName) match {
       case delegate: DelegateRepository => delegate.delegate().asInstanceOf[FileRepository]
-      case repository: FileRepository => repository
-      case repository => throw new IllegalStateException(s"Expected 'FileRepository | DelegateRepository', got ${repository.getClass.getName}")
+      case repository: FileRepository   => repository
+      case repository                   =>
+        throw new IllegalStateException(
+          s"Expected 'FileRepository | DelegateRepository', got ${repository.getClass.getName}"
+        )
     }
 
   def adminAuthor = admin.newIdent
@@ -163,14 +206,16 @@ object GerritTestDaemon extends LightweightPluginDaemonTest {
   def restSession: RestSession = adminRestSession
 
   def apply(testClass: Class[_], testName: String, runLambda: () => Status): Status = {
-    var status: Status = FailedStatus
+    var status: Status  = FailedStatus
     val testDescription = Description.createTestDescription(testClass, testName)
-    val statement = new Statement() {
+    val statement       = new Statement() {
       override def evaluate(): Unit = {
         status = runLambda.apply()
       }
     }
-    configRule.apply(() => testRunner.apply(statement, testDescription).evaluate(), testDescription).evaluate()
+    configRule
+      .apply(() => testRunner.apply(statement, testDescription).evaluate(), testDescription)
+      .evaluate()
     status
   }
 

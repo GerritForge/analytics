@@ -14,7 +14,11 @@ package com.gerritforge.gerrit.plugins.analytics
 import com.google.gerrit.extensions.restapi.RestApiModule
 import com.google.gerrit.server.project.ProjectResource.PROJECT_KIND
 import com.google.inject.AbstractModule
-import com.gerritforge.gerrit.plugins.analytics.common.{BotLikeExtractor, BotLikeExtractorImpl, CommitsStatisticsCacheModule}
+import com.gerritforge.gerrit.plugins.analytics.common.{
+  BotLikeExtractor,
+  BotLikeExtractorImpl,
+  CommitsStatisticsCacheModule
+}
 
 class Module extends AbstractModule {
 
