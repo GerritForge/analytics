@@ -19,6 +19,7 @@ import com.gerritforge.gerrit.plugins.analytics.common.{
   BotLikeExtractorImpl,
   CommitsStatisticsCacheModule
 }
+import com.gerritforge.gerrit.plugins.bsl.HttpModule
 
 class Module extends AbstractModule {
 
@@ -31,5 +32,6 @@ class Module extends AbstractModule {
         get(PROJECT_KIND, "contributors").to(classOf[ContributorsResource])
       }
     })
+    install(new HttpModule())
   }
 }

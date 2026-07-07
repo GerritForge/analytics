@@ -27,6 +27,7 @@ lazy val root = (project in file("."))
       "com.google.code.gson" % "gson" % "2.9.0" % Provided,
       "joda-time" % "joda-time" % "2.9.9",
       "org.scala-lang.modules" %% "scala-java8-compat" % "0.9.1",
+      "com.gerritforge" % "gerrit-bsl-license" % "3.14.0",
 
       "com.google.gerrit" % "gerrit-acceptance-framework" % gerritApiVersion % Test,
       "org.bouncycastle" % "bcpg-jdk18on" % "1.72" % Test,
